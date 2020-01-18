@@ -78,11 +78,9 @@ class AverageColorTest extends React.Component {
 			<React.Fragment>
 				<h1>Test Average Color Extender</h1>
 				<canvas ref="canvas" width={ GRID_COLUMNS } height={ GRID_ROWS } style={{backgroundColor: 'red'}}></canvas>
-                <div style={{ position: 'relative'}} >
-                <table ref="colorTable">
-                    { colorGridHTML }
-                </table>
-                <img src={IMG} height={ 165 } width={ 240 } style={{objectFit: 'contain', position: 'absolute', top: 26, left: 25 }}/>
+                <div style={{ position: 'relative'}}>
+                    <table ref="colorTable">{ colorGridHTML }</table>
+                    <img src={IMG} height={ 165 } width={ GRID_COLUMNS * 20 } style={{objectFit: 'contain', position: 'absolute', top: 26, left: 25 }}/>
                 </div>
 
 			</React.Fragment>

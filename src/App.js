@@ -2,6 +2,7 @@ import React from 'react';
 
 import PixelColorTest from './components/PixelColorTest';
 import AverageColorTest from './components/AverageColorTest';
+import Scene from './components/Scene';
 
 import './styles/App.css';
 
@@ -16,8 +17,9 @@ class App extends React.Component {
 
 		return (
 			<React.Fragment>
-				<AverageColorTest></AverageColorTest>
-				<PixelColorTest></PixelColorTest>
+				<Scene/>
+				<AverageColorTest/>
+				<PixelColorTest/>
 			</React.Fragment>
 		);		
 	}
