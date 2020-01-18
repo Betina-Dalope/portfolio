@@ -1,6 +1,8 @@
 import React from 'react';
 import * as THREE from 'three';
 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 import ColorLightPanels from './ColorLightPanels';
 
 
@@ -15,19 +17,23 @@ class Scene extends React.Component {
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(600, 400);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.scene = new THREE.Scene();
 
         // 2. set up camera
         
-        this.camera = new THREE.PerspectiveCamera(30, 600 / 400, 1, 100);
+        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
         this.camera.position.set(0, 5, -18);
         this.camera.lookAt(0,4,0)
         this.scene.add(this.camera);
 
+        //var controls = new OrbitControls( this.camera, this.renderer.domElement );
+
         // 3. set up light
         var ambientLight = new THREE.AmbientLight("white", 1)
         this.scene.add(ambientLight);
+
+        
 
     }
 

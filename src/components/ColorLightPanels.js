@@ -68,13 +68,21 @@ class ColorLightPanels extends React.Component {
         var halfSize = .5;
 
         for( var i = 0; i < numPanels; i++) {
-            var material = new THREE.MeshBasicMaterial( {color: "yellow", side: THREE.DoubleSide} ); //need to make a new material for ever cell because we modify each cell invidually
-            var plane = new THREE.Mesh( geometry, material );
+            var colorPanelGroup = new THREE.Group();
+            var numCells = Math.round(Math.random() * (numPanels-1)) + 1; //random int between 1 and numPanels
+            
+            for ( var j = 0; j < numCells - 1; j++) {
+                var material = new THREE.MeshBasicMaterial( {color: "black", side: THREE.DoubleSide} ); //need to make a new material for ever cell because we modify each cell invidually
+                var plane = new THREE.Mesh( geometry, material );
+    
+                plane.position.set( i - midPoint + halfSize, 0, midPoint - halfSize - j);
+                plane.rotation.x = Math.PI / 2;
 
-            plane.position.set( i - midPoint + halfSize, 0, midPoint - halfSize);
-            plane.rotation.x = Math.PI / 2;
+                colorPanelGroup.add( plane );
+            }
 
-            colorPanels.add( plane );
+
+            colorPanels.add( colorPanelGroup );
         }
         
         return colorPanels;
@@ -108,7 +116,7 @@ class ColorLightPanels extends React.Component {
                 this.colorCellFromPixel(canvasData, i, 0, i, this.wall_left) //left
                 this.colorCellFromPixel(canvasData, i, GRID_COLUMNS - 1, i, this.wall_right) //right
             }
-            console.log(this.wall_right.children);
+
         }
         
         // 3. add image to scene
@@ -127,7 +135,7 @@ class ColorLightPanels extends React.Component {
     colorCellFromPixel = (canvasData, loop_index, x, y, panel) => {
         var panel = panel.getObjectByName( "color panels" );
 
-        var cell = panel.children[ panel.children.length - loop_index - 1 ];
+        var panelGroup = panel.children[ panel.children.length - loop_index - 1 ];
 
         var position = ( x + (canvasData.width * y) ) * 4;
         var red = canvasData.data[ position ] / 255;
@@ -136,10 +144,18 @@ class ColorLightPanels extends React.Component {
         var alpha = canvasData.data[ position + 3 ] / 255;
 
 
-        TweenMax.delayedCall(x * .1, () => {
-            cell.material.color.setRGB(red, green, blue);
-            cell.material.opacity = alpha;
-        })
+        for (var i in panelGroup.children) {
+            var cell = panelGroup.children[i];
+            changeCellColor(i, cell);
+
+        }
+
+        function changeCellColor(i, cell) {
+            TweenMax.delayedCall(i * .1 + Math.random(), () => {
+                cell.material.color.setRGB(red, green, blue);
+                cell.material.opacity = alpha;
+            });
+        }
     }
 
 
