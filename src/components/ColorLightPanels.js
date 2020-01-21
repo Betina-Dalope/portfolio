@@ -2,10 +2,10 @@ import React from 'react';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-const GRID_COLUMNS = 12;
-const GRID_ROWS = 9;
+const GRID_COLUMNS = 16;
+const GRID_ROWS = 12;
 
-const IMG = "./test-image.png";
+const IMG = "./IMG_2709.jpeg";
 
 class ColorLightPanels extends React.Component {
 

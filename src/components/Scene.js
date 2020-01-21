@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import ColorLightPanels from './ColorLightPanels';
+import Lines from './Lines';
 
 
 class Scene extends React.Component {
@@ -40,7 +41,6 @@ class Scene extends React.Component {
     componentDidMount() {
         this.refs.component.appendChild(this.renderer.domElement);
 
-        //this.renderer.render(this.scene, this.camera);
         this.animate();
     }
 
@@ -48,13 +48,13 @@ class Scene extends React.Component {
         requestAnimationFrame(this.animate);
 
         this.renderer.render(this.scene, this.camera);
-       
     }
 
 	render() {
 
 		return (
 			<div ref="component">
+                <Lines scene={ this.scene } />
                 <ColorLightPanels scene={ this.scene }/>
             </div>
 		);		
