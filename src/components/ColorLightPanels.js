@@ -43,7 +43,7 @@ class ColorLightPanels extends React.Component {
         // 3. construct grid lines and color panels
         for (var i in this.grid.children) {
             var width = this.grid.children[i].userData.width;
-            this.grid.children[i].add( new THREE.GridHelper(width, width, "red") );
+            //this.grid.children[i].add( new THREE.GridHelper(width, width, "red") );
 
             this.grid.children[i].add( this.constructColorPanels(width) );
         }

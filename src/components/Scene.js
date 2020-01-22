@@ -28,7 +28,8 @@ class Scene extends React.Component {
         this.camera.lookAt(0,4,0)
         this.scene.add(this.camera);
 
-        //var controls = new OrbitControls( this.camera, this.renderer.domElement );
+        var controls = new OrbitControls( this.camera, this.renderer.domElement );
+        controls.target.set(0,4,0);
 
         // 3. set up light
         var ambientLight = new THREE.AmbientLight("white", 1)
