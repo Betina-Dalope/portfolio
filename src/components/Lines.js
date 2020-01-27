@@ -2,9 +2,7 @@ import React from 'react';
 import * as THREE from 'three';
 import { TweenMax, Expo } from 'gsap';
 
-const NUM_PARTICLES_PER_LINE = 1000;
-const WIDTH = 16;
-const HEIGHT = 12;
+const NUM_PARTICLES_PER_LINE = 500;
 
 class Lines extends React.Component {
 
@@ -12,18 +10,18 @@ class Lines extends React.Component {
 	constructor(props) {
         super(props);
 
-
-        this.grid = this.constructGridCurves(WIDTH, HEIGHT , WIDTH);
+        this.grid = this.constructGridCurves(props.grid_size.width, props.grid_size.height, props.grid_size.depth);
+        var array_size = props.grid_size.width * props.grid_size.height * props.grid_size.depth;
 
        
-        var particlePositions = new Float32Array( NUM_PARTICLES_PER_LINE * 3 * HEIGHT );
-        var particleScales = new Float32Array( NUM_PARTICLES_PER_LINE * HEIGHT);
-        var particleOpacities = new Float32Array( NUM_PARTICLES_PER_LINE * HEIGHT);
+        var particlePositions = new Float32Array( NUM_PARTICLES_PER_LINE * 3 * array_size );
+        var particleScales = new Float32Array( NUM_PARTICLES_PER_LINE * array_size);
+        var particleOpacities = new Float32Array( NUM_PARTICLES_PER_LINE * array_size);
 
 
-        for (var path_index in this.grid.horizontals) {
+        for (var path_index in this.grid.concat) {
 
-            var spacedPositions = this.grid.horizontals[ path_index ].getSpacedPoints(NUM_PARTICLES_PER_LINE);
+            var spacedPositions = this.grid.concat[ path_index ].getSpacedPoints(NUM_PARTICLES_PER_LINE);
             
             // var indexMin = path_index * NUM_PARTICLES_PER_LINE;
 
@@ -54,7 +52,7 @@ class Lines extends React.Component {
         var material = new THREE.ShaderMaterial( {
 
             uniforms: {
-                color: { value: new THREE.Color( "white" ) }
+                color: { value: new THREE.Color( "black" ) }
             },
             vertexShader: this.vertexShader(),
             fragmentShader: this.fragmentShader(),
@@ -70,7 +68,7 @@ class Lines extends React.Component {
         //   });
 
         this.particles = new THREE.Points( geometry, material );
-        this.particles.position.y = HEIGHT / 2;
+        this.particles.position.y = props.grid_size.height / 2;
 
         this.props.scene.add( this.particles );        
     }
@@ -78,7 +76,8 @@ class Lines extends React.Component {
     constructGridCurves = (width, height, depth) => {
         var grid = {
             horizontals: [],
-            verticals: []
+            verticals: [],
+            concat: []
         }
 
         for (var i = 0; i < height; i++) {
@@ -95,6 +94,36 @@ class Lines extends React.Component {
             grid.horizontals[i] = path;
 
         }
+
+        for (var i = 0; i < width; i++) {
+            var point_a = new THREE.Vector3( i - width / 2, -height / 2, -depth / 2);
+            var point_b = new THREE.Vector3( i - width / 2, height / 2, -depth / 2);
+            var point_c = new THREE.Vector3( i - width / 2 , height / 2, depth / 2);
+            var point_d = new THREE.Vector3( i - width / 2 , -height / 2, depth / 2);
+
+            var path = new THREE.CurvePath();
+            path.add(new THREE.LineCurve3(point_a, point_b));
+            path.add(new THREE.LineCurve3(point_b, point_c));
+            path.add(new THREE.LineCurve3(point_c, point_d));
+            path.add(new THREE.LineCurve3(point_d, point_a));
+            grid.verticals[i] = path;
+        }
+
+        for (var i = 0; i < depth; i++) {
+            var point_a = new THREE.Vector3( width / 2, height / 2, i - depth / 2);
+            var point_b = new THREE.Vector3( width / 2, -height / 2, i - depth / 2);
+            var point_c = new THREE.Vector3( -width / 2 , -height / 2, i - depth / 2);
+            var point_d = new THREE.Vector3( -width / 2 , height / 2, i - depth / 2);
+
+            var path = new THREE.CurvePath();
+            path.add(new THREE.LineCurve3(point_a, point_b));
+            path.add(new THREE.LineCurve3(point_b, point_c));
+            path.add(new THREE.LineCurve3(point_c, point_d));
+            path.add(new THREE.LineCurve3(point_d, point_a));
+            grid.verticals[i + width] = path;
+        }
+
+        grid.concat = grid.horizontals.concat( grid.verticals );
 
         return grid;
     }
@@ -143,22 +172,42 @@ class Lines extends React.Component {
     }
 
     componentDidMount() {
-        var particles = this.particles.geometry.attributes.position.array;
+        this.initAni();
+    }
 
-        for (var path_index in this.grid.horizontals) {
+    initAni = () => {
+        var particles_position = this.particles.geometry.attributes.position.array;
+        var particles_scale = this.particles.geometry.attributes.scale.array;
 
-            var spacedPositions = this.grid.horizontals[ path_index ].getSpacedPoints(NUM_PARTICLES_PER_LINE);
+        
+
+        for (var path_index in this.grid.concat) {
+
+            var spacedPositions = this.grid.concat[ path_index ].getSpacedPoints(NUM_PARTICLES_PER_LINE);
             
             var base_index = NUM_PARTICLES_PER_LINE * path_index;
             for (var i = 0; i < NUM_PARTICLES_PER_LINE; i++) {
-                
+
+                var delay = i * .02 + (path_index * .1);
+
+                TweenMax.from(particles_scale, .5, {
+                    [ base_index + i ]: 0,
+                    delay: delay,
+                    yoyo: true,
+                    repeat: -1,
+                    repeatDelay: 1,
+                    onUpdate: () => { //every time the animation frame updates!!
+                        this.particles.geometry.attributes.scale.needsUpdate = true;
+                    }
+                });
+
                 var pos_index = (3 * base_index) + ( 3 * i );
 
-                TweenMax.to(particles, .5, {
+                TweenMax.to(particles_position, .5, {
                     [ pos_index ]: spacedPositions[i].x,
-                    [ pos_index + 1 ]: spacedPositions[i].y, //y
+                    [ pos_index + 1 ]: spacedPositions[i].y,
                     [ pos_index + 2 ]: spacedPositions[i].z,
-                    delay: i * .01 + (path_index * 1),
+                    delay: delay,
                     yoyo: true,
                     repeat: -1,
                     repeatDelay: 1,
@@ -169,8 +218,37 @@ class Lines extends React.Component {
     
                 
             }
+        }        
+    }
+
+    restingAni = () => {
+        var particles = this.particles.geometry.attributes.position.array;
+
+        for (var path_index in this.grid.concat) {
+
+            var spacedPositions = this.grid.concat[ path_index ].getSpacedPoints(NUM_PARTICLES_PER_LINE);
+            
+            var base_index = NUM_PARTICLES_PER_LINE * path_index;
+            for (var i = 0; i < NUM_PARTICLES_PER_LINE; i++) {
+                
+                var pos_index = (3 * base_index) + ( 3 * i );
+
+                TweenMax.to(particles, .5, {
+                    [ pos_index ]: spacedPositions[i].x,
+                    [ pos_index + 1 ]: spacedPositions[i].y,
+                    [ pos_index + 2 ]: spacedPositions[i].z,
+                    delay: i * .02 + (path_index * .5),
+                    yoyo: true,
+                    repeat: -1,
+                    repeatDelay: 2,
+                    onUpdate: () => { //every time the animation frame updates!!
+                        this.particles.geometry.attributes.position.needsUpdate = true;
+                    }
+                });
+    
+                
+            }
         }
-        
     }
 
 

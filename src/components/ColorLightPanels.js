@@ -2,8 +2,8 @@ import React from 'react';
 import * as THREE from 'three';
 import { TweenMax } from 'gsap';
 
-const GRID_COLUMNS = 16;
-const GRID_ROWS = 12;
+var GRID_COLUMNS;
+var GRID_ROWS;
 
 const IMG = "./IMG_2709.jpeg";
 
@@ -13,6 +13,9 @@ class ColorLightPanels extends React.Component {
 	constructor(props) {
         super(props);
 
+        GRID_COLUMNS = props.grid_size.width;
+        GRID_ROWS = props.grid_size.height;
+
         // 1. set up grid structre
         this.ceiling = new THREE.Group()
         this.floor = new THREE.Group()
@@ -21,6 +24,7 @@ class ColorLightPanels extends React.Component {
 
         this.grid = new THREE.Group();
         this.grid.add(this.ceiling, this.floor, this.wall_right, this.wall_left);
+        //this.grid.visible = false;
 
         this.props.scene.add(this.grid);
 
@@ -48,9 +52,7 @@ class ColorLightPanels extends React.Component {
             this.grid.children[i].add( this.constructColorPanels(width) );
         }
 
-        
-
-        this.constructColorPanels();
+    
     }
 
     componentDidMount() {
@@ -162,7 +164,7 @@ class ColorLightPanels extends React.Component {
 	render() {
 
 		return (
-            <canvas ref="image_loader" width={ GRID_COLUMNS } height={ GRID_ROWS}></canvas>
+            <canvas ref="image_loader" width={ this.props.grid_size.width } height={ this.props.grid_size.height }></canvas>
 		);		
 	}
 }
