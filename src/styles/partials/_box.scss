@@ -1,0 +1,23 @@
+.box {
+    pointer-events: none;
+
+    opacity: 0;
+    .text {
+        
+        position: absolute;
+        background-color: black;
+        transition: all .4s;
+        padding: 20px 40px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        box-shadow: 0px 0px 16px 8px rgba(0,0,0,0.5);
+
+    }
+
+    &--active {
+        opacity: 1;
+
+    }
+}

@@ -52,7 +52,7 @@ class Lines extends React.Component {
         var material = new THREE.ShaderMaterial( {
 
             uniforms: {
-                color: { value: new THREE.Color( "black" ) }
+                color: { value: new THREE.Color( "grey" ) }
             },
             vertexShader: this.vertexShader(),
             fragmentShader: this.fragmentShader(),
@@ -68,9 +68,9 @@ class Lines extends React.Component {
         //   });
 
         this.particles = new THREE.Points( geometry, material );
-        this.particles.position.y = props.grid_size.height / 2;
+        //this.particles.position.y = props.grid_size.height / 2;
 
-        this.props.scene.add( this.particles );        
+        this.props.box.add( this.particles );        
     }
 
     constructGridCurves = (width, height, depth) => {

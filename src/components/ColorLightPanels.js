@@ -24,9 +24,9 @@ class ColorLightPanels extends React.Component {
 
         this.grid = new THREE.Group();
         this.grid.add(this.ceiling, this.floor, this.wall_right, this.wall_left);
-        //this.grid.visible = false;
+        this.grid.position.set(0, -GRID_ROWS/2, 0)
 
-        this.props.scene.add(this.grid);
+        props.box.add(this.grid);
 
         // 2. set size of walls
         this.ceiling.userData = { width: GRID_COLUMNS };
@@ -129,9 +129,9 @@ class ColorLightPanels extends React.Component {
             side: THREE.DoubleSide
         });
         var screen = new THREE.Mesh( screenGeometry, screenMaterial );
-        screen.position.set(0, GRID_ROWS/2, GRID_COLUMNS / 2);
+        screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
         screen.rotation.y = Math.PI;
-        this.props.scene.add(screen);
+        this.props.box.add(screen);
     }
 
     colorCellFromPixel = (canvasData, loop_index, x, y, panel) => {

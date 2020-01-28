@@ -3,9 +3,7 @@ import * as THREE from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-import ColorLightPanels from './ColorLightPanels';
-import Lines from './Lines';
-import { TweenMax } from 'gsap/gsap-core';
+import Box from './Box';
 
 
 class Scene extends React.Component {
@@ -15,7 +13,8 @@ class Scene extends React.Component {
             width: 16,
             height: 12,
             depth: 16
-        }
+        },
+        font: null
     }
 
 	constructor(props) {
@@ -33,42 +32,28 @@ class Scene extends React.Component {
         // 2. set up camera
         
         this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
-        this.camera.position.set(-8, 5, -2);
-        this.camera.lookAt(4,5,-4)
+        this.camera.position.set(0, 16, 0);
+        this.camera.lookAt(0,0,0)
         this.scene.add(this.camera);
 
         var controls = new OrbitControls( this.camera, this.renderer.domElement );
         controls.target.set(0,4,0);
 
-        // 3. set up light
-        this.light = new THREE.PointLight( "purple", .8, 100 );
-        this.light.castShadow = true;
-        this.light.position.y = this.state.grid_size.height / 2;
-        this.scene.add(this.light);
-
         var ambientLight = new THREE.AmbientLight("white", .3);
         this.scene.add(ambientLight);
-
-        // 4. set up background
-        var box_geo = new THREE.BoxBufferGeometry(this.state.grid_size.width + .1, this.state.grid_size.height + .1, this.state.grid_size.depth + .1);
-        var box_mesh = new THREE.MeshPhongMaterial({color: "pink", side: THREE.BackSide});
-        var box = new THREE.Mesh(box_geo, box_mesh);
-        box.position.y = this.state.grid_size.height / 2;
-        box.receiveShadow = true;
-        this.scene.add( box );
-
     }
 
     componentDidMount() {
         this.refs.component.appendChild(this.renderer.domElement);
 
-        this.animate();
 
-        TweenMax.to(this.light.color, 5, {
-            r: 0,
-            repeat: -1,
-            yoyo: true
-        });
+        // 3. load font
+        new THREE.FontLoader().load( 'fonts/helvetiker.json', ( font ) => {
+            console.log("here");
+            this.setState({font: font});
+        } );
+
+        this.animate();
     }
 
     animate = (delta) => {
@@ -79,10 +64,39 @@ class Scene extends React.Component {
 
 	render() {
 
+        var boxes = [
+            { title: "Home", position: {x: 8, y: 6, z: 8, rotation: 0 } },
+            { title: "Work", position: {x: 8, y: 10, z: -8, rotation: Math.PI / -3 } },
+            { title: "Prototypes", position: {x: -8, y: 6, z: -8, rotation: 0 } },
+            { title: "Contact", position: {x: -8, y: 6, z: 8, rotation: 0} }
+        ]
+
+        var boxHTML = [];
+        for (var i in boxes) {
+            // 1. check which param was passed in url
+            var is_active = this.props.match.params.box_title && boxes[i].title.toLowerCase() == this.props.match.params.box_title.toLowerCase();
+
+            if (is_active ) {
+                this.camera.position.set( boxes[i].position.x, boxes[i].position.y, boxes[i].position.z )
+                this.camera.lookAt( 0, 0, 0 );
+            }
+            boxHTML.push(
+                <Box
+                    key={ "box" + i }
+                    index={ parseInt(i) }
+                    isActive={ is_active }
+                    scene={ this.scene }
+                    title={ boxes[i].title }
+                    position={ boxes[i].position }
+                    font={ this.state.font }
+                />
+            );
+        }
+        
+
 		return (
 			<div ref="component">
-                <Lines scene={ this.scene } grid_size={ this.state.grid_size }/>
-                {/* <ColorLightPanels scene={ this.scene } grid_size={ this.state.grid_size }/> */}
+                { boxHTML }
             </div>
 		);		
 	}

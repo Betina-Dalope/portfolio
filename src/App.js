@@ -4,23 +4,24 @@ import PixelColorTest from './components/PixelColorTest';
 import AverageColorTest from './components/AverageColorTest';
 import Scene from './components/Scene';
 
-import './styles/App.css';
+import './styles/App.scss';
 
-const GRID_COLUMNS = 6;
-const GRID_ROWS = 4;
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
 
 
 	render() {
-
 		return (
-			<React.Fragment>
-				<Scene/>
-				<AverageColorTest/>
-				<PixelColorTest/>
-			</React.Fragment>
+			<BrowserRouter>
+				<Switch>
+					<Route exact path='/' component={Scene} />
+					<Route path='/test-1' component={PixelColorTest} />
+					<Route path='/test-2' component={AverageColorTest} />
+					<Route path='/:box_title' component={Scene} />
+				</Switch>
+			</BrowserRouter>
 		);		
 	}
 }
