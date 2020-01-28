@@ -5,8 +5,6 @@ import { TweenMax } from 'gsap';
 var GRID_COLUMNS;
 var GRID_ROWS;
 
-const IMG = "./IMG_2709.jpeg";
-
 class ColorLightPanels extends React.Component {
 
 
@@ -25,6 +23,7 @@ class ColorLightPanels extends React.Component {
         this.grid = new THREE.Group();
         this.grid.add(this.ceiling, this.floor, this.wall_right, this.wall_left);
         this.grid.position.set(0, -GRID_ROWS/2, 0)
+        this.grid.visible = false;
 
         props.box.add(this.grid);
 
@@ -56,7 +55,14 @@ class ColorLightPanels extends React.Component {
     }
 
     componentDidMount() {
-        this.loadImage();
+        //this.loadImage();
+    }
+
+    componentDidUpdate() {
+        // 1. make grid visible
+        // 2. load image
+        
+
     }
 
 
@@ -93,7 +99,7 @@ class ColorLightPanels extends React.Component {
     loadImage = () => {
 		// 1. create image object
 		var image = new Image();
-		image.src = IMG;
+		image.src = this.props.image_src;
 
 		// 2. add image to canvas (same size as grid) and fit image inside canvas and center
 		var canvasContext = this.refs.image_loader.getContext("2d");
@@ -125,7 +131,7 @@ class ColorLightPanels extends React.Component {
         var loader = new THREE.TextureLoader();
         var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
         var screenMaterial = new THREE.MeshBasicMaterial({
-            map: loader.load(IMG),
+            map: loader.load(this.props.image_src),
             side: THREE.DoubleSide
         });
         var screen = new THREE.Mesh( screenGeometry, screenMaterial );

@@ -1,7 +1,6 @@
 import React from 'react';
 import * as THREE from 'three';
-
-import ColorLightPanels from './ColorLightPanels';
+import Carousel from './Carousel';
 import Lines from './Lines';
 import { TimelineLite } from 'gsap/gsap-core';
 
@@ -54,7 +53,7 @@ class Box extends React.Component {
     componentDidUpdate() {
         console.log("update");
 
-        var text_geo = new THREE.TextGeometry( this.props.title, {
+        var text_geo = new THREE.TextGeometry( this.props.data.title, {
             font: this.props.font,
             size: 1,
             height: .8,
@@ -77,14 +76,20 @@ class Box extends React.Component {
 		return (
 			<div ref="component" className={"box" + (this.props.isActive ? " box--active" : "") } >
                 <Lines box={ this.box } grid_size={ this.state.grid_size }/>
-                {/* <ColorLightPanels box={ this.box } grid_size={ this.state.grid_size }/> */}
+                
 
-                {/* <div class="text">
-                    <h2 className="title">{ this.props.title }</h2>
-                    <p><strong>Email: </strong>betina.devwork@gmail.com</p>
-                    <p><strong>GitHub: </strong>betina.devwork@gmail.com</p>
-                    <p><strong>LinkedIn: </strong>betina.devwork@gmail.com</p>
-                </div> */}
+                { this.props.data.subtitle ?
+                    <div className="text subtitle" dangerouslySetInnerHTML={{__html: this.props.data.subtitle}}></div>
+                : null }
+
+                { this.props.data.description ?
+                    <div className="text" dangerouslySetInnerHTML={{__html: this.props.data.description}}></div>
+                : null }
+
+                { this.props.data.projects ?
+                    <Carousel box={ this.box } data={ this.props.data.projects } grid_size={ this.state.grid_size }/>
+                : null }
+
 
             </div>
 		);		

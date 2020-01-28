@@ -1,0 +1,77 @@
+[
+    {
+        "title": "Home",
+        "subtitle": "<h1>Betina Dalope</h1><p>Philadelphia, PA</p>",
+        "description": "<h2>Contact</h2><p><strong>Email: </strong> betina.devwork@gmail.com</p><p><strong>LinkedIn: </strong>https://www.linkedin.com/in/mbetina/</p>"
+    },
+    {
+        "title": "Work",
+        "projects": [
+            {
+                "title": "Harvard College",
+                "url": "https://college.harvard.edu/",
+                "role": "front-end developer",
+                "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
+                "description": "A large drupal project with an emphasis on accessibility and performance on all browsers and devices.",
+                "image": ""
+            },
+            {
+                "title": "Amon Carter Museum of Art",
+                "url": "https://college.harvard.edu/",
+                "role": "front-end developer",
+                "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
+                "description": "A large drupal project with complex shapes and responsive design",
+                "image": ""
+            },
+            {
+                "title": "Longwood Gardens Map",
+                "url": "https://longwoodgardens.org/maps/orchid",
+                "role": "lead front-end developer",
+                "tech": "JavaScript, HTML, CSS (Sass)",
+                "description": "A one-page, wayfinding application intended for use on mobile devices."
+            },
+            {
+                "title": "Bluecadet",
+                "url": "https://college.harvard.edu/",
+                "role": "lead developer",
+                "tech": "Wordpress, PHP, HTML, CSS (Sass), jQuery, Pantheon",
+                "description": "A marketing website with many assets and a custom wordpress CMS"
+            },
+            {
+                "title": "Fords Theatre Kiosk",
+                "role": "lead front-end developer",
+                "tech": "React, Node.js, Gsap, Drupal, CSS (Sass), Rest API",
+                "description": "A React application installed on 7 large screens on-site with real-time alerts and scheduling updates",
+                "video": "you need to download the repo and deploy yourself or take a video"
+            },
+            {
+                "title": "Bill & Melinda Gates Foundation Photo Booth",
+                "role": "front-end developer",
+                "tech": "Angular 2, Node.js, Wordpress, Gsap, SVG Animations, Rest API",
+                "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
+                "video": "you need to download the repo and deploy yourself or take a video"
+            }
+        ]
+
+    },
+    {
+        "title": "Prototypes",
+        "projects": [
+            {
+                "title": "Kinetk Website",
+                "tech": "Three.js, Gsap, React",
+                "description": "Making a fully animated 3D portfolio website using only built in geometries and textures, without the use of a 3D modeling or animation software.  In collaboration with Philadelphia based musicians.",
+                "video": "you need to download the repo and deploy yourself or take a video"
+            },
+            {
+                "title": "What's Your Color?",
+                "tech": "React, Gsap",
+                "description": "A custom web form and algorithm for determining quiz results.  In collaboration with psychology and ethics professors from Temple University.",
+                "video": "you need to download the repo and deploy yourself or take a video"
+            }             
+        ]
+    },
+    {
+        "title": "Coming Soon"
+    }
+]

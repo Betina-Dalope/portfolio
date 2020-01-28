@@ -1,8 +1,35 @@
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
 
-body {
-    margin: 0;
-    padding: 0;
-}
-#root {
-    position: relative;
+    .toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: block;
+        height: 45px;
+        width: 45px;
+        background-color: rgba(black, .5);
+        box-shadow: 0px 0px 8px 4px rgba(grey,0.3);
+        border: none;
+        cursor: pointer;
+    }
+
+    ul {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .5s, opacity .5s;
+        margin-top: 100px;
+    }
+
+
+    &--open {
+        ul {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s, opacity .5s;
+        }
+    }
 }

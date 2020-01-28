@@ -1,9 +1,11 @@
 import React from 'react';
 import * as THREE from 'three';
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import Box from './Box';
+import '../styles/partials/_scene.scss';
+
+import PAGES from '../data/pages.json';
 
 
 class Scene extends React.Component {
@@ -74,7 +76,7 @@ class Scene extends React.Component {
         var boxHTML = [];
         for (var i in boxes) {
             // 1. check which param was passed in url
-            var is_active = this.props.match.params.box_title && boxes[i].title.toLowerCase() == this.props.match.params.box_title.toLowerCase();
+            var is_active = this.props.match.params.box_title && PAGES[i].title.toLowerCase() == this.props.match.params.box_title.toLowerCase();
 
             if (is_active ) {
                 this.camera.position.set( boxes[i].position.x, boxes[i].position.y, boxes[i].position.z )
@@ -86,7 +88,7 @@ class Scene extends React.Component {
                     index={ parseInt(i) }
                     isActive={ is_active }
                     scene={ this.scene }
-                    title={ boxes[i].title }
+                    data={ PAGES[i] }
                     position={ boxes[i].position }
                     font={ this.state.font }
                 />
@@ -95,7 +97,7 @@ class Scene extends React.Component {
         
 
 		return (
-			<div ref="component">
+			<div ref="component" className="scene">
                 { boxHTML }
             </div>
 		);		
