@@ -51,7 +51,6 @@ class Box extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log("update");
 
         var text_geo = new THREE.TextGeometry( this.props.data.title, {
             font: this.props.font,
@@ -79,15 +78,15 @@ class Box extends React.Component {
                 
 
                 { this.props.data.subtitle ?
-                    <div className="text subtitle" dangerouslySetInnerHTML={{__html: this.props.data.subtitle}}></div>
+                    <div className="content text-box subtitle" dangerouslySetInnerHTML={{__html: this.props.data.subtitle}}></div>
                 : null }
 
                 { this.props.data.description ?
-                    <div className="text" dangerouslySetInnerHTML={{__html: this.props.data.description}}></div>
+                    <div className="content text-box" dangerouslySetInnerHTML={{__html: this.props.data.description}}></div>
                 : null }
 
                 { this.props.data.projects ?
-                    <Carousel box={ this.box } data={ this.props.data.projects } grid_size={ this.state.grid_size }/>
+                    <Carousel key={"carousel" + this.props.data } box={ this.box } data={ this.props.data.projects } grid_size={ this.state.grid_size }/>
                 : null }
 
 

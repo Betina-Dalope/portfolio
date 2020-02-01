@@ -1,19 +1,22 @@
 .carousel {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
+
+    canvas {
+        display: none;
+    }
     .slides {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
 
         .slide {
-            height: 200px;
-            width: 200px;
+            height: 300px;
+            width: 300px;
             background-color: rgba(black, .5);
             box-shadow: 0px 0px 8px 4px rgba(grey,0.3);
             display: block;
             color: white;
             margin: 0px 10px;
-            padding: 20px;
         }
 
         .flickity-page-dots {
@@ -31,5 +34,13 @@
                 border-radius: 50%;
             }
         }
+    }
+
+    .details {
+        position: fixed;
+        bottom: 20px;
+        left: 100px;
+        background-color: rgba(black, .5);
+        box-shadow: 0px 0px 8px 4px rgba(grey,0.3);        
     }
 }

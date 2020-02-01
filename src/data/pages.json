@@ -1,11 +1,14 @@
 [
     {
         "title": "Home",
+        "position": {"x": 8, "y": 6, "z": 8, "rotation": 0 },
         "subtitle": "<h1>Betina Dalope</h1><p>Philadelphia, PA</p>",
         "description": "<h2>Contact</h2><p><strong>Email: </strong> betina.devwork@gmail.com</p><p><strong>LinkedIn: </strong>https://www.linkedin.com/in/mbetina/</p>"
+        
     },
     {
         "title": "Work",
+        "position": {"x": 8, "y": 10, "z": -8, "rotation": -1.047 },
         "projects": [
             {
                 "title": "Harvard College",
@@ -13,7 +16,8 @@
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A large drupal project with an emphasis on accessibility and performance on all browsers and devices.",
-                "image": ""
+                "image": "./images/test-image.png"
+                
             },
             {
                 "title": "Amon Carter Museum of Art",
@@ -21,7 +25,7 @@
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A large drupal project with complex shapes and responsive design",
-                "image": ""
+                "image": "./images/IMG_2709.jpeg"
             },
             {
                 "title": "Longwood Gardens Map",
@@ -56,6 +60,7 @@
     },
     {
         "title": "Prototypes",
+        "position": {"x": -8, "y": 6, "z": -8, "rotation": 0 },
         "projects": [
             {
                 "title": "Kinetk Website",
@@ -72,6 +77,7 @@
         ]
     },
     {
-        "title": "Coming Soon"
+        "title": "Coming Soon",
+        "position": {"x": -8, "y": 6, "z": 8, "rotation": 0 }
     }
 ]

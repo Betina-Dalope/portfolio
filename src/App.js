@@ -11,8 +11,12 @@ import PAGES from './data/pages.json'
 
 class App extends React.Component {
 
+	state = {
+		isMenuOpen: false
+	}
+
 	onMenuToggleClick = (event) => {
-		this.refs.menu.classList.toggle("menu--open");
+		this.setState({ isMenuOpen: !this.state.isMenuOpen });
 	}
 
 	render() {
@@ -20,13 +24,14 @@ class App extends React.Component {
 		for (var i in PAGES) {
 			menuItemsHTML.push(
 
-				<li><Link to={"/" + PAGES[i].title.toLowerCase()}>{ PAGES[i].title }</Link></li>
+				<li><Link to={"/" + PAGES[i].title.toLowerCase()} onClick={ this.onMenuToggleClick }>{ PAGES[i].title }</Link></li>
 			);
 		}
 
 		return (
+			
 			<BrowserRouter>
-				<nav ref="menu" className="menu">
+				<nav className={ "menu" + (this.state.isMenuOpen ? " menu--open" : "") }>
 					<h1 id="menu-title" className="u-sr-only">Menu</h1>
 					<button className="toggle" onClick={ this.onMenuToggleClick }>Menu</button>
 					<ul aria-labelledby="menu-title">
@@ -34,10 +39,10 @@ class App extends React.Component {
 					</ul>
 				</nav>
 				<Switch>
-					<Route exact path='/' component={Scene} />
+					<Route exact path='/' render={(props) => <Scene {...props} isMenuOpen={ this.state.isMenuOpen } />} />
 					<Route path='/test-1' component={PixelColorTest} />
 					<Route path='/test-2' component={AverageColorTest} />
-					<Route path='/:box_title' component={Scene} />
+					<Route path='/:box_title' render={(props) => <Scene {...props} isMenuOpen={ this.state.isMenuOpen } />} />
 				</Switch>
 			</BrowserRouter>
 		);

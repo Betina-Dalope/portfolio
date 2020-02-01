@@ -5,6 +5,10 @@ import { TweenMax } from 'gsap';
 var GRID_COLUMNS;
 var GRID_ROWS;
 
+/*
+ maybe each of the cells gets userData: {canvas_x, canvas_y, distance_from_screen}
+*/
+
 class ColorLightPanels extends React.Component {
 
 
@@ -58,9 +62,15 @@ class ColorLightPanels extends React.Component {
         //this.loadImage();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         // 1. make grid visible
-        // 2. load image
+        this.grid.visible = true;
+
+        // 2. load image if new image, remove image if no image
+        if (!this.props.image_src)
+            this.unloadImage();
+        else if (prevProps.image_src != this.props.image_src)
+            this.loadImage();
         
 
     }
@@ -132,12 +142,22 @@ class ColorLightPanels extends React.Component {
         var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
         var screenMaterial = new THREE.MeshBasicMaterial({
             map: loader.load(this.props.image_src),
-            side: THREE.DoubleSide
+            side: THREE.FrontSide
         });
         var screen = new THREE.Mesh( screenGeometry, screenMaterial );
         screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
         screen.rotation.y = Math.PI;
         this.props.box.add(screen);
+    }
+
+    unloadImage = () => {
+        // console.log(this.grid.children, this.grid.getObjectByName( "color panels"));
+        // for (var i in this.grid.children) {
+        //     var panel = this.grid.children[i].getObjectByName( "color panels");
+        //     var 
+        // }
+
+        this.grid.visible = false;
     }
 
     colorCellFromPixel = (canvasData, loop_index, x, y, panel) => {
