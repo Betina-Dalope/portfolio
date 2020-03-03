@@ -1,10 +1,18 @@
+@font-face {
+	font-family: "Sanford";
+	src: url("/fonts/Sanford-0103_demo.ttf"), url("/black-book/fonts/Sanford-0103_demo.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal; }
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Sanford', 'Times', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-color: black;
+
+  padding: 10% 10%;
 }
 
 code {

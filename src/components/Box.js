@@ -25,22 +25,22 @@ class Box extends React.Component {
         var box_mesh = new THREE.MeshPhongMaterial({color: "white", side: THREE.BackSide, opacity: 0.5, transparent: true});
         this.box = new THREE.Mesh(box_geo, box_mesh);
         //box.position.y = this.state.grid_size.height / 2;
-        this.box.position.set(props.position.x, props.position.y, props.position.z);
-        this.box.rotation.y = props.position.rotation;
+        this.box.position.set(props.data.position.x, props.data.position.y, props.data.position.z);
+        this.box.rotation.y = props.data.position.rotation;
         this.box.receiveShadow = true;
-        props.scene.add( this.box );
+        props.functions.addToScene( this.box );
 
         // 3. set up light
-        this.light = new THREE.PointLight( props.color, 1, 16 );
+        this.light = new THREE.PointLight( "black", 1, 16 );
         this.light.castShadow = true;
-        this.light.position.set(props.position.x, props.position.y, props.position.z);
-        props.scene.add(this.light);
+        this.light.position.set(props.data.position.x, props.data.position.y, props.data.position.z);
+        props.functions.addToScene( this.light) ;
 
     }
 
     componentDidMount() {
 
-        var colors = [new THREE.Color("yellow"), new THREE.Color("purple"), new THREE.Color("blue"), new THREE.Color("red")];
+        var colors = [new THREE.Color("orange"), new THREE.Color("purple"), new THREE.Color("blue"), new THREE.Color("red")];
         var i = this.props.index;
         var timeline = new TimelineLite({repeat: -1});
         timeline
@@ -48,10 +48,12 @@ class Box extends React.Component {
             .to(this.light.color, 5, { r: colors[ (i+1) % colors.length ].r, g: colors[ (i+1) % colors.length ].g, b: colors[ (i+1) % colors.length ].b })
             .to(this.light.color, 5, { r: colors[ (i+2) % colors.length ].r, g: colors[ (i+2) % colors.length ].g, b: colors[ (i+2) % colors.length ].b })
             .to(this.light.color, 5, { r: colors[ (i+3) % colors.length ].r, g: colors[ (i+3) % colors.length ].g, b: colors[ (i+3) % colors.length ].b })
+            .to(this.light.color, 5, { r: 0, g: 0, b: 0 })        
     }
 
-    componentDidUpdate() {
-
+    componentDidUpdate(prevProps) {
+        
+        // 1. add title to box
         var text_geo = new THREE.TextGeometry( this.props.data.title, {
             font: this.props.font,
             size: 1,
@@ -68,6 +70,26 @@ class Box extends React.Component {
         var text = new THREE.Mesh(text_geo, text_mat);
         text.position.set( (this.state.grid_size.width / -2) + 1, this.state.grid_size.height / -2, (this.state.grid_size.depth / -2) + .5);
         this.box.add(text);
+
+        if (this.props.isActive) {
+            this.calculateCameraPosition(new THREE.Vector3(-2,-2,9));
+        }
+    }
+
+    calculateCameraPosition = (cameraPositionFromBoxOrigin) => {
+
+        var cameraRotation = {
+            x: 0,
+            y: this.props.data.position.rotation - 0.34,
+            z: 0
+        };
+
+        var worldPosition = this.box.localToWorld( cameraPositionFromBoxOrigin );
+
+        console.log( worldPosition );
+        this.props.functions.moveCameraTo( worldPosition, cameraRotation )
+
+        // this.moveCameraTo
     }
 
     render() {
@@ -77,7 +99,7 @@ class Box extends React.Component {
                 <Lines box={ this.box } grid_size={ this.state.grid_size }/>
                 
 
-                { this.props.data.subtitle ?
+                {/* { this.props.data.subtitle ?
                     <div className="content text-box subtitle" dangerouslySetInnerHTML={{__html: this.props.data.subtitle}}></div>
                 : null }
 
@@ -87,7 +109,7 @@ class Box extends React.Component {
 
                 { this.props.data.projects ?
                     <Carousel key={"carousel" + this.props.data } box={ this.box } data={ this.props.data.projects } grid_size={ this.state.grid_size }/>
-                : null }
+                : null } */}
 
 
             </div>

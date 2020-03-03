@@ -1,14 +1,14 @@
 [
     {
         "title": "Home",
-        "position": {"x": 8, "y": 6, "z": 8, "rotation": 0 },
+        "position": {"x": -8, "y": 6, "z": -8, "rotation": 0 },
         "subtitle": "<h1>Betina Dalope</h1><p>Philadelphia, PA</p>",
         "description": "<h2>Contact</h2><p><strong>Email: </strong> betina.devwork@gmail.com</p><p><strong>LinkedIn: </strong>https://www.linkedin.com/in/mbetina/</p>"
         
     },
     {
         "title": "Work",
-        "position": {"x": 8, "y": 10, "z": -8, "rotation": -1.047 },
+        "position": {"x": 8, "y": 10, "z": -8, "rotation": -0.7854 },
         "projects": [
             {
                 "title": "Harvard College",
@@ -21,7 +21,7 @@
             },
             {
                 "title": "Amon Carter Museum of Art",
-                "url": "https://college.harvard.edu/",
+                "url": "https://www.cartermuseum.org/",
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A large drupal project with complex shapes and responsive design",
@@ -36,7 +36,7 @@
             },
             {
                 "title": "Bluecadet",
-                "url": "https://college.harvard.edu/",
+                "url": "https://www.bluecadet.com/",
                 "role": "lead developer",
                 "tech": "Wordpress, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A marketing website with many assets and a custom wordpress CMS"
@@ -60,12 +60,18 @@
     },
     {
         "title": "Prototypes",
-        "position": {"x": -8, "y": 6, "z": -8, "rotation": 0 },
+        "position": {"x": -8, "y": 4, "z": 8, "rotation": 1.5708 },
         "projects": [
             {
-                "title": "Kinetk Website",
+                "title": "About this site",
                 "tech": "Three.js, Gsap, React",
-                "description": "Making a fully animated 3D portfolio website using only built in geometries and textures, without the use of a 3D modeling or animation software.  In collaboration with Philadelphia based musicians.",
+                "description": "This was my first attempt using a 3D javascript library.  I wanted to use only built in shapes and objects, without the use of 3d modeling software.",
+                "video": "you need to download the repo and deploy yourself or take a video"
+            },
+            {
+                "title": "Kinetk Website",
+                "tech": "Three.js, Gsap, React, Blender",
+                "description": "Making a fully animated 3D portfolio website.  In collaboration with Philadelphia based musicians.  My first few attempts used only built in three.js objects.  But I quickly discovered that in order to get the results we wanted, we need to model the shapes first.",
                 "video": "you need to download the repo and deploy yourself or take a video"
             },
             {
@@ -77,7 +83,7 @@
         ]
     },
     {
-        "title": "Coming Soon",
-        "position": {"x": -8, "y": 6, "z": 8, "rotation": 0 }
+        "title": "Music",
+        "position": {"x": 8, "y": 6, "z": 8, "rotation": 3.1415 }
     }
 ]

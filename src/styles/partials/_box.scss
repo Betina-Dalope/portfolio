@@ -1,21 +1,21 @@
-.box {
-    display: none;
-    .content {
+// .box {
+//     display: none;
+//     .content {
         
-        position: absolute;
-        transition: all .4s;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+//         position: absolute;
+//         transition: all .4s;
+//         top: 55%;
+//         left: 50%;
+//         transform: translate(-50%, -50%);
 
-        &.subtitle {
-            top: 120px;
-            left: 100px;
-            transform: none;
-        }
-    }
+//         &.subtitle {
+//             top: 120px;
+//             left: 100px;
+//             transform: none;
+//         }
+//     }
 
-    &--active {
-        display: block;
-    }
-}
+//     &--active {
+//         display: block;
+//     }
+// }

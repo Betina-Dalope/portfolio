@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import PixelColorTest from './components/PixelColorTest';
 import AverageColorTest from './components/AverageColorTest';
+import Page from './components/Page';
 import Scene from './components/Scene';
 
 import './styles/App.scss';
@@ -42,6 +43,7 @@ class App extends React.Component {
 					<Route exact path='/' render={(props) => <Scene {...props} isMenuOpen={ this.state.isMenuOpen } />} />
 					<Route path='/test-1' component={PixelColorTest} />
 					<Route path='/test-2' component={AverageColorTest} />
+					<Route path='/page' component={Page}/>
 					<Route path='/:box_title' render={(props) => <Scene {...props} isMenuOpen={ this.state.isMenuOpen } />} />
 				</Switch>
 			</BrowserRouter>

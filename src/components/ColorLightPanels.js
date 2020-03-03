@@ -59,7 +59,8 @@ class ColorLightPanels extends React.Component {
     }
 
     componentDidMount() {
-        //this.loadImage();
+        this.grid.visible = true;
+        this.loadImage();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -87,7 +88,7 @@ class ColorLightPanels extends React.Component {
 
         for( var i = 0; i < numPanels; i++) {
             var colorPanelGroup = new THREE.Group();
-            var numCells = Math.round(Math.random() * (numPanels-1)) + 1; //random int between 1 and numPanels
+            var numCells = Math.round(Math.random() * (this.props.grid_size.depth -1)) + 1; //random int between 1 and numPanels
             
             for ( var j = 0; j < numCells - 1; j++) {
                 var material = new THREE.MeshBasicMaterial( {color: "black", side: THREE.DoubleSide} ); //need to make a new material for ever cell because we modify each cell invidually
@@ -107,6 +108,8 @@ class ColorLightPanels extends React.Component {
     }
 
     loadImage = () => {
+
+        console.log( "load image");
 		// 1. create image object
 		var image = new Image();
 		image.src = this.props.image_src;
@@ -190,7 +193,7 @@ class ColorLightPanels extends React.Component {
 	render() {
 
 		return (
-            <canvas ref="image_loader" width={ this.props.grid_size.width } height={ this.props.grid_size.height }></canvas>
+            <canvas ref="image_loader" className="image-loader" width={ this.props.grid_size.width } height={ this.props.grid_size.height }></canvas>
 		);		
 	}
 }

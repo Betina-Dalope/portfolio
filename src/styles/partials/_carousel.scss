@@ -1,22 +1,30 @@
 .carousel {
-
     canvas {
-        display: none;
+        //display: none;
     }
     .slides {
-        position: absolute;
-        top: 50%;
+
         width: 100%;
-        transform: translateY(-50%);
+        outline: none;
+        display: block;
+        position: relative;
 
         .slide {
-            height: 300px;
-            width: 300px;
-            background-color: rgba(black, .5);
-            box-shadow: 0px 0px 8px 4px rgba(grey,0.3);
+
             display: block;
-            color: white;
+            //color: white;
+            width: 30%;
             margin: 0px 10px;
+        }
+        .flickity-button {
+            position: absolute;
+            top: -100%;
+            &.previous {
+                left: -5%;
+            }
+            &.next {
+                right: -5%;
+            }
         }
 
         .flickity-page-dots {
@@ -30,17 +38,33 @@
                 height: 10px;
                 width: 10px;
                 margin: 0 5px;
-                background-color: white;
+                background-color: black;
                 border-radius: 50%;
             }
         }
     }
 
+    .back-to-projects {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: none;
+    }
+
     .details {
         position: fixed;
         bottom: 20px;
-        left: 100px;
+        right: 20px;
         background-color: rgba(black, .5);
         box-shadow: 0px 0px 8px 4px rgba(grey,0.3);        
+    }
+
+    &--show-details {
+        .slides {
+            display: none;
+        }
+        .back-to-projects {
+            display: block;
+        }
     }
 }

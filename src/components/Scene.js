@@ -6,6 +6,9 @@ import Box from './Box';
 import '../styles/partials/_scene.scss';
 
 import PAGES from '../data/pages.json';
+import { TweenMax, Expo } from 'gsap/gsap-core';
+import DatGui, { DatBoolean, DatColor, DatNumber, DatString } from 'react-dat-gui';
+import 'react-dat-gui/dist/index.css';
 
 
 class Scene extends React.Component {
@@ -16,12 +19,15 @@ class Scene extends React.Component {
             height: 12,
             depth: 16
         },
-        font: null
+        font: null,
+        datgui: {
+            position: {x: 0, y: 16, z: 0},
+            lookAt: {x: 0, y: 4, z: 0}            
+        }
     }
 
 	constructor(props) {
         super(props);
-
 
         // 1. set up renderer
 
@@ -35,15 +41,18 @@ class Scene extends React.Component {
         
         this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
         this.camera.userData = { prevPosition: new THREE.Vector3(), prevRotation: new THREE.Vector3() };
-        this.camera.position.set(0, 16, 0);
-        this.camera.lookAt(0,0,0)
+        this.camera.position.set(3, 16, 4);
+        this.camera.lookAt(3,0,2)
+        //this.scene.background = new THREE.Color( 0xffffff );
         this.scene.add(this.camera);
 
-        var controls = new OrbitControls( this.camera, this.renderer.domElement );
-        controls.target.set(0,4,0);
+        // var controls = new OrbitControls( this.camera, this.renderer.domElement );
+        // controls.target.set(0,4,0);
 
-        var ambientLight = new THREE.AmbientLight("white", .3);
+        // 3. maybe turn off when light turns black
+        var ambientLight = new THREE.AmbientLight("white", .15);
         this.scene.add(ambientLight);
+
     }
 
     componentDidMount() {
@@ -61,12 +70,9 @@ class Scene extends React.Component {
     componentDidUpdate( prevProps, prevState ) {
         // 1. move to menu view is menu is toggled open
         if (this.props.isMenuOpen && !prevProps.isMenuOpen) {
-
-            //eventually change to this.moveCameraTo()
-            this.camera.userData.prevPosition.copy( this.camera.position );
-            this.camera.userData.prevRotation.copy( this.camera.rotation );
-            this.camera.position.set(0, 60, 0);
-            this.camera.lookAt(0,0,0);
+            var menuPosition = {x: 0, y: 42, z: 0};
+            var menuRotation = {x: -1.570795326794897, y: 0, z: 0};
+            this.moveCameraTo(menuPosition, menuRotation)
         }
 
         // 2. move back to previous position if menu is closed and url is not changed
@@ -86,27 +92,37 @@ class Scene extends React.Component {
         this.renderer.render(this.scene, this.camera);
     }
 
+    addToScene = (obj) => {
+        this.scene.add( obj );
+    }
+
     moveCameraTo = (position, rotation) => {
-        this.camera.userData.prevPosition = this.camera.position;
-        this.camera.userData.prevRotation = this.camera.rotation;
-        this.camera.position.set( position );
-        this.camera.rotation.set( rotation );
+        this.camera.userData.prevPosition.copy( this.camera.position );
+        this.camera.userData.prevRotation.copy( this.camera.rotation );
+
+        TweenMax.to(this.camera.position, 2, {x: position.x, y: position.y, z: position.z, ease: Expo.easeInOut});
+        TweenMax.to(this.camera.rotation, 2, {x: rotation.x, y: rotation.y, z: rotation.z, ease: Expo.easeOut, delay: 2});
+    }
+
+    onUpdateDatGui = (newData) => {
+
+        this.setState(prevState => ({
+            datgui: { ...prevState.datgui, ...newData }
+        }));
+
+        this.camera.position.set(newData.position.x, newData.position.y, newData.position.z);
+        this.camera.lookAt(newData.lookAt.x, newData.lookAt.y, newData.lookAt.z)
     }
 
 	render() {
 
-        console.log("render");
-
         var boxHTML = [];
         for (var i in PAGES) {
             // 1. check which param was passed in url
+            if (this.props.match) {
             var is_active = this.props.match.params.box_title
                 && PAGES[i].title.toLowerCase() == this.props.match.params.box_title.toLowerCase()
                 && !this.props.isMenuOpen;
-
-            if ( is_active ) {
-                this.camera.position.set( PAGES[i].position.x, PAGES[i].position.y, PAGES[i].position.z )
-                this.camera.lookAt( 0, PAGES[i].position.rotation, 0 );
             }
 
             boxHTML.push(
@@ -114,19 +130,28 @@ class Scene extends React.Component {
                     key={ "box" + i }
                     index={ parseInt(i) }
                     isActive={ is_active }
-                    scene={ this.scene }
                     data={ PAGES[i] }
-                    position={ PAGES[i].position }
                     font={ this.state.font }
+                    functions={ { addToScene: this.addToScene, moveCameraTo: this.moveCameraTo } }
                 />
             );
         }
         
+        const { datgui } = this.state
 
 		return (
+            <React.Fragment>
+                {/* <DatGui data={ datgui } onUpdate={this.onUpdateDatGui}>
+
+                    <DatNumber path='position.x' min={0} max={100} step={1} />
+                    <DatNumber path='position.y' min={0} max={100} step={1} />
+                    <DatNumber path='position.z' min={0} max={100} step={1} />
+
+                </DatGui> */}
 			<div ref="component" className="scene">
                 { boxHTML }
             </div>
+            </React.Fragment>
 		);		
 	}
 }

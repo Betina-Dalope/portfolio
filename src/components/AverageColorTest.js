@@ -2,7 +2,7 @@ import React from 'react';
 
 const GRID_COLUMNS = 12;
 const GRID_ROWS = 9;
-const IMG = "./IMG_2709.jpeg";
+const IMG = "./images/IMG_2709.jpeg";
 
 class AverageColorTest extends React.Component {
 
@@ -76,7 +76,7 @@ class AverageColorTest extends React.Component {
 
 		return (
 			<React.Fragment>
-				<h1>Test Average Color Extender</h1>
+				{/* <h1>Test Average Color Extender</h1> */}
 				<canvas ref="canvas" width={ GRID_COLUMNS } height={ GRID_ROWS } style={{backgroundColor: 'red'}}></canvas>
                 <div style={{ position: 'relative'}}>
                     <table ref="colorTable">{ colorGridHTML }</table>

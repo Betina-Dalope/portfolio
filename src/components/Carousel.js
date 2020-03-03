@@ -3,6 +3,7 @@ import ColorLightPanels from './ColorLightPanels';
 import Flickity from 'flickity'
 
 import '../styles/partials/_carousel.scss';
+import AverageColorTest from './AverageColorTest';
 
 
 class Carousel extends React.Component {
@@ -12,7 +13,7 @@ class Carousel extends React.Component {
     }
 
     componentDidMount() {
-        this.slides = new Flickity( this.refs.slides , { });
+        this.slides = new Flickity( this.refs.slides , { cellAlign: 'left' });
     }
 
     componentDidUpdate() {
@@ -21,6 +22,10 @@ class Carousel extends React.Component {
 
     onSlideClick = (index) => {
         this.setState({ active_index: index });
+    }
+
+    onBackToClick = (event) => {
+        this.setState({ active_index: -1 });
     }
 
     render() {
@@ -33,29 +38,36 @@ class Carousel extends React.Component {
                 // </button>
                 <div className="slide text-box">
                     <h3>{ this.props.data[i].title }</h3>
-                    <p className="description">{ this.props.data[i].description }</p>
-                    <a className="btn">Visit</a>
-                    <button className="btn" onClick={ this.onSlideClick.bind(this, i) }>More</button>
+                    {/* <p className="description">{ this.props.data[i].description }</p> */}
+                    <p className="tech">{ this.props.data[ i ].tech }</p>
+                    {/* <a className="btn" target="_blank" href={ this.props.data[i].url }>Visit</a> */}
+                    {/* <button className="btn" onClick={ this.onSlideClick.bind(this, i) }>More</button> */}
                 </div>
             );
         }
 
 		return (
-			<div ref="component" className="carousel">
-                <ColorLightPanels
-                    box={ this.props.box }
-                    image_src={ this.state.active_index > -1 ? this.props.data[ this.state.active_index ].image : null }
-                    grid_size={ this.props.grid_size } />
+			<div ref="component" className={"carousel" + (this.state.active_index > -1 ? " carousel--show-details" : "")}>
+
+                { this.props.box
+                ?   <ColorLightPanels
+                        box={ this.props.box }
+                        image_src={ this.state.active_index > -1 ? this.props.data[ this.state.active_index ].image : null }
+                        grid_size={ this.props.grid_size } />
+                :   null }
+
                 <div ref="slides" className="slides">{ listItemsHTML }</div>
-                
+                <button className="btn back-to-projects" onClick={ this.onBackToClick }>All Projects</button>
+
                 { this.state.active_index > -1
-                ?   <div ref="details" className="details text-box">
+                ?   (
+                    <div ref="details" className="details text-box">
                         <h3>{ this.props.data[ this.state.active_index ].title }</h3>
                         <p className="description">{ this.props.data[ this.state.active_index ].description }</p>
                         <p className="role">{ this.props.data[ this.state.active_index ].role }</p>
                         <p className="tech">{ this.props.data[ this.state.active_index ].tech }</p>
-                        <a className="btn">Visit</a>
-                    </div>
+                        <a className="btn" target="_blank" href={ this.props.data[ this.state.active_index ].url }>Visit</a>
+                    </div> )
                 : null }
                 
             </div>

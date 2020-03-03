@@ -12,7 +12,7 @@ class PixelColorTest extends React.Component {
 	componentDidMount() {
 		// 1. create image object
 		var image = new Image;
-		image.src = "./test-image.png";
+		image.src = "./images/test-image.png";
 
 		// 2. add image to canvas and fit image inside canvas and center
 		var canvasContext = this.refs.canvas.getContext("2d");
