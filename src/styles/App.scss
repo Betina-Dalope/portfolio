@@ -1,4 +1,75 @@
+
+/********************
+** Breakpoints
+********************/
+
+$bp-small:				640;
+$bp-medium:				1024;
+$bp-large:				1200;
+$bp-xlarge:				1400;
+
+/********************
+** Media Queries
+********************/
+
+$mq-small:				"only screen and (min-width: #{$bp-small}px)";
+$mq-medium:				"only screen and (min-width: #{$bp-medium}px)";
+$mq-large:				"only screen and (min-width: #{$bp-large}px)";
+$mq-xlarge:				"only screen and (min-width: #{$bp-xlarge}px)";
+$mq-retina:				"only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx)";
+$MQs: true;
+
+@mixin bp($point) {
+    @if ($MQs) {
+      @if $point == small {
+        @media #{$mq-small} { @content; }
+      }
+      @else if $point == medium {
+        @media #{$mq-medium} { @content; }
+      }
+      @else if $point == large {
+        @media #{$mq-large}  { @content; }
+      }
+      @else if $point == xlarge {
+        @media #{$mq-xlarge}  { @content; }
+      }
+      @else if $point == retina {
+        @media #{$mq-retina}  { @content; }
+      }
+    }
+    @else {
+      @if $point != retina {
+        @content;
+      }
+    }
+  }
+  
+  @mixin bp-max($point) {
+    @if $point == small {
+       @media (max-width: ($bp-small - 1px)) { @content; }
+    }
+    @else if $point == medium {
+       @media (max-width: ($bp-medium - 1px)) { @content; }
+    }
+    @else if $point == large {
+       @media (max-width: ($bp-large - 1px)) { @content; }
+    }
+  }
+
+
 $box-shadow: 0px 0px 8px 4px rgba(grey,0.3);
+
+
+.basic-page {
+    background-color: white;
+    color: black;
+
+    a {
+        color: black;
+        border-bottom: 1px solid black;
+        text-decoration: none;
+    }
+}
 
 .menu {
     position: absolute;
@@ -83,24 +154,9 @@ h2 {
     margin-top: 80px;
 }
 
-.stage {
-    display: flex;
-    width: 100%;
-    margin-bottom: 20px;
-    &-image {
-        display: block;
-        //background-color: grey;
-        flex: 1;
-        position: relative;
-        height: 0;
-        padding-top: 35%;
-       .stage-image + & {
-           margin-left: 2.5%;
-       } 
-    }
-    &-text {
-        padding: 5%;
-        width: 40%;
-        min-width: 400px;
-    }
-}
+
+@import 'partials/_box.scss';
+@import 'partials/_carousel.scss';
+@import 'partials/_gallery.scss';
+@import 'partials/_media.scss';
+@import 'partials/_scene.scss';

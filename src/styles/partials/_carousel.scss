@@ -13,18 +13,63 @@
 
             display: block;
             //color: white;
-            width: 30%;
+            width: 100%;
             margin: 0px 10px;
+
+            font: inherit;
+            background: initial;
+            color: inherit;
+            padding: 0;
+            border: none;
+            text-align: left;
+
+            @include bp(small) {
+                width: 50%;
+            }
+
+            @include bp(medium) {
+                width: 33.33%;
+            }
         }
         .flickity-button {
             position: absolute;
-            top: -100%;
+            top: -200%;
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            background-color: rgba(grey, .3);
+            border: none;
+            padding: 11px;
+            fill: white;
+            cursor: pointer;
+
+            @include bp(small) {
+                top: -100%;
+            }
+
             &.previous {
-                left: -5%;
+                left: -7%;
             }
             &.next {
-                right: -5%;
+                right: -7%;
             }
+
+            &:disabled {
+                fill: grey;
+                cursor: default;
+            }
+
+            .basic-page & {
+                background-color: white;
+                border: 1px solid black;
+                fill: black;
+
+                &:disabled {
+                    background-color: black;
+                    fill: white;
+                }
+            }
+
         }
 
         .flickity-page-dots {
@@ -33,6 +78,7 @@
             align-items: center;
             justify-content: center;
             padding: 0;
+            cursor: pointer;
             li {
                 display: block;
                 height: 10px;
@@ -40,31 +86,46 @@
                 margin: 0 5px;
                 background-color: black;
                 border-radius: 50%;
+                
+
+                &.is-selected {
+                    border: 1px solid black;
+                    background-color: white;
+                }
             }
         }
     }
 
-    .back-to-projects {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        display: none;
-    }
+}
 
-    .details {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: rgba(black, .5);
-        box-shadow: 0px 0px 8px 4px rgba(grey,0.3);        
-    }
+.carousel__content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+    &-image {
+        display: block;
+        //background-color: grey;
+        width: 100%;
+        position: relative;
+        //height: 0;
 
-    &--show-details {
-        .slides {
-            display: none;
+        @include bp(small) {
+            flex: 1;
+            .carousel__content-image + & {
+                margin-left: 2.5%;
+             }         
         }
-        .back-to-projects {
-            display: block;
+        
+ 
+    }
+    &-text {
+        width: 100%;
+        @include bp(small) {
+            padding: 5%;
+            width: 33%;
+            min-width: 300px;           
         }
     }
 }

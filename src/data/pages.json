@@ -16,44 +16,46 @@
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A large drupal project with an emphasis on accessibility and performance on all browsers and devices.",
-                "image": "./images/test-image.png"
+                "image": "./images/harvard/home.png"
                 
             },
             {
-                "title": "Amon Carter Museum of Art",
-                "url": "https://www.cartermuseum.org/",
+                "title": "National World War II Museum",
+                "url": "https://www.nationalww2museum.org/",
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A large drupal project with complex shapes and responsive design",
-                "image": "./images/IMG_2709.jpeg"
+                "image": "./images/nwwiim/home.png"
             },
             {
                 "title": "Longwood Gardens Map",
                 "url": "https://longwoodgardens.org/maps/orchid",
                 "role": "lead front-end developer",
                 "tech": "JavaScript, HTML, CSS (Sass)",
-                "description": "A one-page, wayfinding application intended for use on mobile devices."
+                "description": "A one-page, wayfinding application intended for use on mobile devices.",
+                "image": "./images/longwood/desktop.png"
             },
             {
                 "title": "Bluecadet",
                 "url": "https://www.bluecadet.com/",
                 "role": "lead developer",
                 "tech": "Wordpress, PHP, HTML, CSS (Sass), jQuery, Pantheon",
-                "description": "A marketing website with many assets and a custom wordpress CMS"
+                "description": "A marketing website with many assets and a custom wordpress CMS",
+                "image": "./images/bluecadet/home.png"
             },
             {
                 "title": "Fords Theatre Kiosk",
                 "role": "lead front-end developer",
                 "tech": "React, Node.js, Gsap, Drupal, CSS (Sass), Rest API",
                 "description": "A React application installed on 7 large screens on-site with real-time alerts and scheduling updates",
-                "video": "you need to download the repo and deploy yourself or take a video"
+                "image": "./images/IMG_2703.jpeg"
             },
             {
                 "title": "Bill & Melinda Gates Foundation Photo Booth",
                 "role": "front-end developer",
                 "tech": "Angular 2, Node.js, Wordpress, Gsap, SVG Animations, Rest API",
                 "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
-                "video": "you need to download the repo and deploy yourself or take a video"
+                "image": "./images/gates/photobooth.jpeg"
             }
         ]
 
@@ -65,21 +67,56 @@
             {
                 "title": "About this site",
                 "tech": "Three.js, Gsap, React",
-                "description": "This was my first attempt using a 3D javascript library.  I wanted to use only built in shapes and objects, without the use of 3d modeling software.",
-                "video": "you need to download the repo and deploy yourself or take a video"
+                "image": "./images/kinetkbass/angle-logo.png"
             },
             {
                 "title": "Kinetk Website",
                 "tech": "Three.js, Gsap, React, Blender",
-                "description": "Making a fully animated 3D portfolio website.  In collaboration with Philadelphia based musicians.  My first few attempts used only built in three.js objects.  But I quickly discovered that in order to get the results we wanted, we need to model the shapes first.",
-                "video": "you need to download the repo and deploy yourself or take a video"
+                "image": "./images/kinetkbass/color-test-cube.png"
             },
             {
                 "title": "What's Your Color?",
                 "tech": "React, Gsap",
-                "description": "A custom web form and algorithm for determining quiz results.  In collaboration with psychology and ethics professors from Temple University.",
                 "video": "you need to download the repo and deploy yourself or take a video"
             }             
+        ],
+        "gallery": [
+            {
+                "type": "video",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/kinetkbass/original-in-the-cube.mov"
+            },
+            {
+                "type": "video",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/boxes.mov"
+            },
+            {
+                "type": "video",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/kinetkbass/init-ani.mov"
+            },
+            {
+                "type": "image",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/kinetkbass/green-shadow.png"
+            },
+            {
+                "type": "video",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/stage.mov"
+            },
+            {
+                "type": "image",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/kinetkbass/angle-logo.png"
+            },
+            {
+                "type": "video",
+                "tech": "Three.js, Gsap, React",
+                "src": "./images/kinetkbass/shadow.mov"
+            }
+
         ]
     },
     {

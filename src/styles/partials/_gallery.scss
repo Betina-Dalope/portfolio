@@ -1,0 +1,27 @@
+$borderSize: 2px;
+
+.gallery {
+    padding-top: 1px;
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        width: calc(100% - #{$borderSize} - #{$borderSize});
+        margin-left: -$borderSize;
+        li {
+            flex: 1;
+            min-width: calc(100% - #{$borderSize} - #{$borderSize});
+            border: 2px solid transparent;
+
+            &:nth-child(3) {
+                min-width: calc(100% - #{$borderSize} - #{$borderSize});
+            }
+
+            @include bp(small) {
+                min-width: 30%;
+            }
+        }
+    }
+    
+}

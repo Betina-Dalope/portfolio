@@ -2,18 +2,25 @@ import React from 'react';
 import ColorLightPanels from './ColorLightPanels';
 import Flickity from 'flickity'
 
-import '../styles/partials/_carousel.scss';
-import AverageColorTest from './AverageColorTest';
+import Media from './Media';
 
 
 class Carousel extends React.Component {
 
     state = {
-        active_index: -1
+        active_index: 0
     }
 
     componentDidMount() {
-        this.slides = new Flickity( this.refs.slides , { cellAlign: 'left' });
+        this.slides = new Flickity( this.refs.slides , {
+            //cellAlign: 'left',
+            contain: true,
+            on: {
+                change: (index) => {
+                    this.setState({ active_index: index })
+                }
+            }
+        });
     }
 
     componentDidUpdate() {
@@ -24,9 +31,6 @@ class Carousel extends React.Component {
         this.setState({ active_index: index });
     }
 
-    onBackToClick = (event) => {
-        this.setState({ active_index: -1 });
-    }
 
     render() {
 
@@ -36,15 +40,16 @@ class Carousel extends React.Component {
                 // <button className="slide" onClick={ this.onSlideClick } data-img={ this.props.data[i].image }>
                 //     { this.props.data[i].title }
                 // </button>
-                <div className="slide text-box">
+                <button className="slide" onClick={ this.onSlideClick.bind(this, i) }>
                     <h3>{ this.props.data[i].title }</h3>
                     {/* <p className="description">{ this.props.data[i].description }</p> */}
                     <p className="tech">{ this.props.data[ i ].tech }</p>
                     {/* <a className="btn" target="_blank" href={ this.props.data[i].url }>Visit</a> */}
                     {/* <button className="btn" onClick={ this.onSlideClick.bind(this, i) }>More</button> */}
-                </div>
+                </button>
             );
         }
+
 
 		return (
 			<div ref="component" className={"carousel" + (this.state.active_index > -1 ? " carousel--show-details" : "")}>
@@ -54,21 +59,29 @@ class Carousel extends React.Component {
                         box={ this.props.box }
                         image_src={ this.state.active_index > -1 ? this.props.data[ this.state.active_index ].image : null }
                         grid_size={ this.props.grid_size } />
-                :   null }
+                :   <div className="carousel__content">
+                        <div className="carousel__content-image">
+                            <Media
+                                type={ this.props.use_stage ? "stage" : ""}
+                                src={ this.props.data[ this.state.active_index ].image }
+                            />
+                        </div>
+
+                        { this.props.data[ this.state.active_index ].description
+                        ?   <div className="carousel__content-text">
+                                <h3>{ this.props.data[ this.state.active_index ].title }</h3>
+                                <p>{ this.props.data[ this.state.active_index ].description }</p>
+                                <p><strong>Role:</strong> { this.props.data[ this.state.active_index ].role }</p>
+
+                                { this.props.data[ this.state.active_index ].url
+                                ?   <a target="_blank" href={ this.props.data[ this.state.active_index ].url }>View</a>
+                                :   null }
+                            </div>
+                        : null }
+                    </div>
+                }
 
                 <div ref="slides" className="slides">{ listItemsHTML }</div>
-                <button className="btn back-to-projects" onClick={ this.onBackToClick }>All Projects</button>
-
-                { this.state.active_index > -1
-                ?   (
-                    <div ref="details" className="details text-box">
-                        <h3>{ this.props.data[ this.state.active_index ].title }</h3>
-                        <p className="description">{ this.props.data[ this.state.active_index ].description }</p>
-                        <p className="role">{ this.props.data[ this.state.active_index ].role }</p>
-                        <p className="tech">{ this.props.data[ this.state.active_index ].tech }</p>
-                        <a className="btn" target="_blank" href={ this.props.data[ this.state.active_index ].url }>Visit</a>
-                    </div> )
-                : null }
                 
             </div>
 		);		

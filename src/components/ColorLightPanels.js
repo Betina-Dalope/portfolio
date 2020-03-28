@@ -55,6 +55,13 @@ class ColorLightPanels extends React.Component {
             this.grid.children[i].add( this.constructColorPanels(width) );
         }
 
+        var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
+        var screenMaterial = new THREE.MeshBasicMaterial( {color: "black", side: THREE.FrontSide} );
+        this.screen = new THREE.Mesh( screenGeometry, screenMaterial );
+        this.screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
+        this.screen.rotation.y = Math.PI;
+        props.box.add(this.screen);
+
     
     }
 
@@ -109,7 +116,6 @@ class ColorLightPanels extends React.Component {
 
     loadImage = () => {
 
-        console.log( "load image");
 		// 1. create image object
 		var image = new Image();
 		image.src = this.props.image_src;
@@ -141,16 +147,35 @@ class ColorLightPanels extends React.Component {
         }
         
         // 3. add image to scene
-        var loader = new THREE.TextureLoader();
-        var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
-        var screenMaterial = new THREE.MeshBasicMaterial({
-            map: loader.load(this.props.image_src),
-            side: THREE.FrontSide
-        });
-        var screen = new THREE.Mesh( screenGeometry, screenMaterial );
-        screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
-        screen.rotation.y = Math.PI;
-        this.props.box.add(screen);
+        //var loader = new THREE.TextureLoader();
+        // var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
+        // var screenMaterial = new THREE.MeshBasicMaterial({
+        //     map: loader.load(this.props.image_src),
+        //     side: THREE.FrontSide,
+        //     transparent: true
+        // });
+        // var screen = new THREE.Mesh( screenGeometry, screenMaterial );
+        // screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
+        // screen.rotation.y = Math.PI;
+        // this.props.box.add(screen);
+
+        var _this = this;
+
+        this.refs.image.onload = function(event) {
+            var texture = new THREE.Texture( this );
+            texture.needsUpdate = true;
+
+            var screenGeometry = new THREE.PlaneBufferGeometry(GRID_COLUMNS, GRID_ROWS);
+            var screenMaterial = new THREE.MeshBasicMaterial({
+                map: texture,
+                side: THREE.FrontSide,
+                transparent: true
+            });
+            var screen = new THREE.Mesh( screenGeometry, screenMaterial );
+            screen.position.set(0, 0, (GRID_COLUMNS / 2) - 0.1);
+            screen.rotation.y = Math.PI;
+            _this.props.box.add(screen);
+        }
     }
 
     unloadImage = () => {
@@ -193,7 +218,10 @@ class ColorLightPanels extends React.Component {
 	render() {
 
 		return (
-            <canvas ref="image_loader" className="image-loader" width={ this.props.grid_size.width } height={ this.props.grid_size.height }></canvas>
+            <React.Fragment>
+                <canvas ref="image_loader" className="image-loader" width={ this.props.grid_size.width } height={ this.props.grid_size.height }></canvas>
+                <img ref="image" style={{display: 'none'}} src={ this.props.image_src } />
+            </React.Fragment>
 		);		
 	}
 }

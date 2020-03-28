@@ -5,14 +5,14 @@
 	font-style: normal; }
 
 body {
-  margin: 0;
-  font-family: 'Sanford', 'Times', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  background-color: black;
+	margin: 0;
+	font-family: 'Sanford', 'Times', serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: black;
 
-  padding: 10% 10%;
+	padding: 10% 10%;
+	color: white;
 }
 
 code {

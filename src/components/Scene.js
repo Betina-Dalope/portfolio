@@ -46,8 +46,10 @@ class Scene extends React.Component {
         //this.scene.background = new THREE.Color( 0xffffff );
         this.scene.add(this.camera);
 
-        // var controls = new OrbitControls( this.camera, this.renderer.domElement );
-        // controls.target.set(0,4,0);
+        if (props.controls) {
+            var controls = new OrbitControls( this.camera, this.renderer.domElement );
+            controls.target.set(0,4,0);
+        }
 
         // 3. maybe turn off when light turns black
         var ambientLight = new THREE.AmbientLight("white", .15);
