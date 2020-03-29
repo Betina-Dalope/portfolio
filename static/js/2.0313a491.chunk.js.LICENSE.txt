@@ -1,11 +1,7 @@
-/*!
- * GSAP 3.1.1
- * https://greensock.com
- *
- * @license Copyright 2008-2020, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
- * @author: Jack Doyle, jack@greensock.com
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
 */
 
 /*!
@@ -15,7 +11,7 @@
 */
 
 /*!
- * CSSPlugin 3.1.1
+ * CSSPlugin 3.2.6
  * https://greensock.com
  *
  * Copyright 2008-2020, GreenSock. All rights reserved.
@@ -23,24 +19,6 @@
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
-
-/*!
- * Unipointer v2.3.0
- * base class for doing one thing with pointer event
- * MIT license
- */
-
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-/*!
- * getSize v2.0.3
- * measure size of elements
- * MIT license
- */
 
 /*!
  * Flickity v2.2.1
@@ -53,25 +31,35 @@ object-assign
  * Copyright 2015-2019 Metafizzy
  */
 
-/** @license React v16.12.0
- * react.production.min.js
+/*!
+ * GSAP 3.2.6
+ * https://greensock.com
  *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * @license Copyright 2008-2020, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
+/*!
+ * Unidragger v2.3.0
+ * Draggable base class
+ * MIT license
  */
 
-/** @license React v16.12.0
- * react-dom.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+/*!
+ * Unipointer v2.3.0
+ * base class for doing one thing with pointer event
+ * MIT license
  */
 
-/** @license React v0.18.0
+/*!
+ * getSize v2.0.3
+ * measure size of elements
+ * MIT license
+ */
+
+/** @license React v0.19.1
  * scheduler.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -80,14 +68,26 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/*!
- * Unidragger v2.3.0
- * Draggable base class
- * MIT license
- */
-
 /** @license React v16.12.0
  * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
