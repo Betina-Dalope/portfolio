@@ -48,7 +48,7 @@
                 "role": "lead front-end developer",
                 "tech": "React, Node.js, Gsap, Drupal, CSS (Sass), Rest API",
                 "description": "A React application installed on 7 large screens on-site with real-time alerts and scheduling updates",
-                "image": "./images/IMG_2703.jpeg"
+                "image": "./images/ford-theatre/logo.png"
             },
             {
                 "title": "Bill & Melinda Gates Foundation Photo Booth",
@@ -56,6 +56,13 @@
                 "tech": "Angular 2, Node.js, Wordpress, Gsap, SVG Animations, Rest API",
                 "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
                 "image": "./images/gates/photobooth.jpeg"
+            },
+            {
+                "title": "Mural Arts",
+                "role": "front-end developer",
+                "tech": "Wordpress, HTML, CSS (Sass), jQuery",
+                "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
+                "image": "./images/mural-arts/home.png"
             }
         ]
 
