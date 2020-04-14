@@ -15,7 +15,7 @@ class DefaultMedia extends React.Component {
 
 		return (
 
-			<img src={ this.props.src } />
+			<img src={ this.props.src } onLoad={ this.props.onLoad } onError={ this.props.onError }/>
 
 		);		
 	}

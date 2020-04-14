@@ -15,7 +15,7 @@ class Video extends React.Component {
 
 		return (
 
-			<video src={ this.props.src } autoPlay muted loop/>
+			<video src={ this.props.src } autoPlay muted loop preload='auto' onLoadedData={ this.props.onLoad } onError={ this.props.onError }/>
 
 		);		
 	}

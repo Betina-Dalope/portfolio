@@ -31,7 +31,8 @@ class Page extends React.Component {
                 <Carousel data={ DATA[1].projects }/>
 
                 <h2>Prototypes</h2>
-                <p>using Three.js, Gsap, React.js, and Sass (CSS)</p>
+                <p>designed using Vectr and Illustrator</p>
+                <p>programmed using Three.js, Gsap, React.js, and Sass (CSS)</p>
 
                 <Gallery data={ DATA[2].gallery }/>
 

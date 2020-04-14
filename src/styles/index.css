@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Sanford";
-	src: url("/fonts/Sanford-0103_demo.ttf"), url("/black-book/fonts/Sanford-0103_demo.ttf") format("truetype");
+	src: url("/fonts/Sanford-0103_demo.ttf"), url("/portfolio/fonts/Sanford-0103_demo.ttf") format("truetype");
 	font-weight: normal;
 	font-style: normal; }
 
@@ -13,6 +13,7 @@ body {
 
 	padding: 10% 10%;
 	color: white;
+	overflow-x: hidden;
 }
 
 code {

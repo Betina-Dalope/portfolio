@@ -1,4 +1,4 @@
-$borderSize: 2px;
+$borderSize: 3px;
 
 .gallery {
     padding-top: 1px;
@@ -14,8 +14,19 @@ $borderSize: 2px;
             min-width: calc(100% - #{$borderSize} - #{$borderSize});
             border: 2px solid transparent;
 
-            &:nth-child(3) {
+            &.featured {
                 min-width: calc(100% - #{$borderSize} - #{$borderSize});
+
+                .media {
+                    padding-top: 0;
+                }
+                img, video {
+                    top: 0;
+                    left: 0;
+                    transform: none;
+                    height: auto;
+                    position: static;
+                }
             }
 
             @include bp(small) {

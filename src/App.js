@@ -35,6 +35,7 @@ class App extends React.Component {
 			<BrowserRouter>
 				<Switch>
 					<Route exact path='/' component={BasicPage}/>
+					<Route exact path='/portfolio' component={BasicPage}/>
 					<Route exact path='/initial-scene' render={(props) =>
 						<React.Fragment>
 						<nav className={ "menu" + (this.state.isMenuOpen ? " menu--open" : "") }>

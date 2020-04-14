@@ -11,21 +11,12 @@
         "position": {"x": 8, "y": 10, "z": -8, "rotation": -0.7854 },
         "projects": [
             {
-                "title": "Harvard College",
-                "url": "https://college.harvard.edu/",
-                "role": "front-end developer",
-                "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
-                "description": "A large drupal project with an emphasis on accessibility and performance on all browsers and devices.",
-                "image": "./images/harvard/home.png"
-                
-            },
-            {
                 "title": "National World War II Museum",
                 "url": "https://www.nationalww2museum.org/",
                 "role": "front-end developer",
                 "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
-                "description": "A large drupal project with complex shapes and responsive design",
-                "image": "./images/nwwiim/home.png"
+                "description": "A large drupal project with an emphasis on accessibility, responsive design, and clean and consistent user experience.",
+                "image": "/images/nwwiim/home.png"
             },
             {
                 "title": "Longwood Gardens Map",
@@ -33,7 +24,16 @@
                 "role": "lead front-end developer",
                 "tech": "JavaScript, HTML, CSS (Sass)",
                 "description": "A one-page, wayfinding application intended for use on mobile devices.",
-                "image": "./images/longwood/desktop.png"
+                "image": "/images/longwood/desktop.png"
+            },
+            {
+                "title": "Amon Carter Museum",
+                "url": "https://www.cartermuseum.org/",
+                "role": "front-end developer",
+                "tech": "Drupal 8, PHP, HTML, CSS (Sass), jQuery, Pantheon",
+                "description": "A large drupal project with complex shapes and responsive design.",
+                "image": "/images/amon-carter/home.png"
+                
             },
             {
                 "title": "Bluecadet",
@@ -41,28 +41,29 @@
                 "role": "lead developer",
                 "tech": "Wordpress, PHP, HTML, CSS (Sass), jQuery, Pantheon",
                 "description": "A marketing website with many assets and a custom wordpress CMS",
-                "image": "./images/bluecadet/home.png"
+                "image": "/images/bluecadet/home.png"
             },
             {
                 "title": "Fords Theatre Kiosk",
                 "role": "lead front-end developer",
                 "tech": "React, Node.js, Gsap, Drupal, CSS (Sass), Rest API",
                 "description": "A React application installed on 7 large screens on-site with real-time alerts and scheduling updates",
-                "image": "./images/ford-theatre/logo.png"
+                "image": "/images/ford-theatre/screens.png"
             },
             {
                 "title": "Bill & Melinda Gates Foundation Photo Booth",
                 "role": "front-end developer",
                 "tech": "Angular 2, Node.js, Wordpress, Gsap, SVG Animations, Rest API",
                 "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
-                "image": "./images/gates/photobooth.jpeg"
+                "image": "/images/gates/photobooth.jpeg"
             },
             {
                 "title": "Mural Arts",
+                "url": "https://www.muralarts.org/",
                 "role": "front-end developer",
                 "tech": "Wordpress, HTML, CSS (Sass), jQuery",
-                "description": "A touch screen application installed on site.  Hundreds of visitors a day.",
-                "image": "./images/mural-arts/home.png"
+                "description": "A colorful marketing site built on Wordpress with an emphasis on creative UX.",
+                "image": "/images/mural-arts/home.png"
             }
         ]
 
@@ -74,12 +75,12 @@
             {
                 "title": "About this site",
                 "tech": "Three.js, Gsap, React",
-                "image": "./images/kinetkbass/angle-logo.png"
+                "image": "/images/kinetkbass/angle-logo.png"
             },
             {
                 "title": "Kinetk Website",
                 "tech": "Three.js, Gsap, React, Blender",
-                "image": "./images/kinetkbass/color-test-cube.png"
+                "image": "/images/kinetkbass/color-test-cube.png"
             },
             {
                 "title": "What's Your Color?",
@@ -91,38 +92,46 @@
             {
                 "type": "video",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/kinetkbass/original-in-the-cube.mov"
+                "src": "/images/kinetkbass/original-in-the-cube.mov"
             },
             {
                 "type": "video",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/boxes.mov"
+                "src": "/images/boxes.mov"
             },
             {
                 "type": "video",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/kinetkbass/init-ani.mov"
+                "featured": true,
+                "src": "/images/kinetkbass/init-ani.mov"
             },
             {
                 "type": "image",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/kinetkbass/green-shadow.png"
+                "src": "/images/kinetkbass/green-shadow.png"
             },
             {
                 "type": "video",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/stage.mov"
+                "src": "/images/stage.mov"
             },
             {
                 "type": "image",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/kinetkbass/angle-logo.png"
+                "src": "/images/kinetkbass/angle-logo.png"
             },
             {
                 "type": "video",
                 "tech": "Three.js, Gsap, React",
-                "src": "./images/kinetkbass/shadow.mov"
-            }
+                "featured": true,
+                "src": "/images/kinetkbass/shadow.mov"
+            },
+            {
+                "type": "image",
+                "featured": true,
+                "tech": "Vectr, Illustrator",
+                "src": "/images/yana-collective/composite.png"
+            }         
 
         ]
     },

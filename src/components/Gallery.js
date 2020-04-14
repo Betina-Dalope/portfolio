@@ -14,7 +14,7 @@ class Gallery extends React.Component {
         var itemsHTML = [];
         for (var i in this.props.data) {
             itemsHTML.push(
-                <li>
+                <li className={ this.props.data[i].featured ? "featured" : ""}>
                     <Media {...this.props.data[i]} />
                     {/* <div className="gallery__text">
                         <p>{ this.props.data[i].tech }</p>
